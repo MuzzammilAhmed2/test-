@@ -117,7 +117,7 @@ def lambda_handler(event, context):
             s3_resource.Object(Bucket, file_key).delete()
 
     # Start Glue Crawler with retry mechanism
-    crawler_name = 'spotify_crawler_1'
+    crawler_name = 'spotify_crawler'
     start_crawler_with_retry(crawler_name)
 
 
