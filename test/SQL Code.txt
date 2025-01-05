@@ -1,0 +1,32 @@
+Create Database spotify
+
+CREATE OR REPLACE TABLE albums_data (
+    album_id VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(255),
+    release_date DATE,
+    total_tracks INT,
+    url VARCHAR(255)
+);
+
+CREATE OR REPLACE TABLE artists_data (
+    artist_id VARCHAR(50) PRIMARY KEY, 
+    artist_name VARCHAR(255), 
+    external_url VARCHAR(255) 
+);
+CREATE OR REPLACE TABLE songs_data (
+    song_id VARCHAR(50) PRIMARY KEY,          -- Unique identifier for the song
+    song_name VARCHAR(255) NOT NULL,         -- Name of the song
+    duration_ms INT NOT NULL,                -- Duration in milliseconds
+    url VARCHAR(500),                        -- URL to the song
+    popularity INT,                          -- Popularity score of the song
+    song_added DATE DEFAULT CURRENT_DATE,    -- Date when the song was added
+    album_id VARCHAR(50),                    -- Associated album ID
+    artist_id VARCHAR(50),                   -- Associated artist ID
+    FOREIGN KEY (album_id) REFERENCES albums_data(album_id),
+    FOREIGN KEY (artist_id) REFERENCES artists_data(artist_id)
+);
+
+
+Select * from albums_data
+Select * from artists_data
+Select * from songs_data
